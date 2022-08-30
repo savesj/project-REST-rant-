@@ -16,17 +16,22 @@ function show (data) {
   // if ratings exists
 if (data.place.comments.length) {
   let sumRatings = data.place.comments.reduce((tot, c) => {
-  return tot + c.stars
-}, 0)
-let averageRating = sumRatings / data.place.comments.length
-rating = (
-  <h3>
-  {Math.round(averageRating)} stars
-  </h3>
-)
+    return tot + c.stars
+  }, 0)
+  let averageRating = Math.round(sumRatings / data.place.comments.length)
+  let stars = ''
+  for (let i = 0; i < averageRating; i++) {
+    stars += '⭐️'
+  }
+  rating = (
+    <h3>
+      {stars} stars
+    </h3>
+  )
 }
 
-      comments = data.place.comments.map(c => {
+if (data.place.comments.lenght)
+comments = data.place.comments.map(c => {
         return (
           <div className="border col-sm-4">
             <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave!  😻'}</h2>
