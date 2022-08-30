@@ -8,6 +8,25 @@ function show (data) {
             No comments yet!
         </h3>
     )
+ // Deleting comments
+  if (data.place.comments.length) {
+    comments = data.place.comments.map((c) => {
+      return (
+        <div className='border'>
+          <h2 className='rant'>{c.rant ? "Rant! 😡" : "Rave! 😻"}</h2>
+          <div>{c.content}</div>
+          <div>- {c.author}</div>
+          <h4>Rating: {c.stars}</h4>
+          <form method="POST" action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}>
+            <input type="submit" className="btn btn-danger" value="Delete Comment" />
+          </form>
+ 
+        </div>
+      );
+    });
+  }
+
+
  let rating = (
   <h3 className="inactive">
     Not yet rated
