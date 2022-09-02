@@ -1,18 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const placeSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  pic: { type: String, default: 'http://placekitten.com/350/350'},
-  cuisines: { type: String, required: true },
-  city: { type: String, default: 'Anytown' },
-  state: { type: String, default: 'USA' },
-  founded: {
-    type: Number,
-    min: [1673, 'Surely not that old?!'],
-    max: [new Date().getFullYear(), 'This is the future!']
-  },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
-})
+let commentSchema = new mongoose.Schema({
+  author: { type: String, default: "Anonymous" },
+  rant: { type: Boolean, default: false },
+  stars: { type: Number, required: true },
+  content: { type: String, default: "" },
+});
 
-module.exports = mongoose.model('Comment', commentSchema)
-module.exports.Comment = require('./comment')
+module.exports = mongoose.model("Comment", commentSchema);
