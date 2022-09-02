@@ -17,11 +17,11 @@ app.use(methodOverride('_method'))
 app.use('/places', require('./controllers/places'));
 
 //Home Page
-app.get('/', function(req, res){
+app.get('/', (_req, res) => {
     res.render('home');
 })
 
-app.get('*', (req, res) => {
+app.get('*', (_req, res) => {
     res.render('error404');
 });
 //Listen for Connections
